@@ -1,0 +1,20 @@
+{
+    "name": "suporteleiloes/website-api",
+    "description": "Métodos para comunicação via API com ERP da Suporte Leilões para websites",
+    "type": "library",
+    "require": {
+        "symfony/http-client": "^5.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Suporteleiloes\\WebsiteApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tiago Felipe",
+            "email": "tiago@tiagofelipe.com"
+        }
+    ]
+}
