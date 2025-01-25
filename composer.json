@@ -3,7 +3,13 @@
     "description": "Métodos para comunicação via API com ERP da Suporte Leilões para websites",
     "type": "library",
     "require": {
-        "symfony/http-client": "^5.4"
+        "php": "^7.3.0",
+        "ext-bcmath": "*",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "symfony/http-client": "^5.4",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "license": "MIT",
     "autoload": {
@@ -16,5 +22,8 @@
             "name": "Tiago Felipe",
             "email": "tiago@tiagofelipe.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }
