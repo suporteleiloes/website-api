@@ -67,12 +67,16 @@ class ApiService
         $queryString = $this->parseParams($options, 1, 10000);
         return $this->callApi('get', '/api/public/banners?' . $queryString);
     }
-    public function listPages($options = [], $page = 1, $limit = 100) {
+    public function listContents($options = [], $page = 1, $limit = 100) {
         $queryString = $this->parseParams($options, $page, $limit);
-        return $this->callApi('get', '/api/public/pages?' . $queryString);
+        return $this->callApi('get', '/api/public/contents?' . $queryString);
     }
-    public function loadPage($id) {
-        return $this->callApi('get', '/api/public/pages/' . $id);
+    public function loadContent($id) {
+        return $this->callApi('get', '/api/public/contents/' . $id);
+    }
+    public function listMenus($options = []) {
+        $queryString = $this->parseParams($options, 1, 10000);
+        return $this->callApi('get', '/api/public/menus?' . $queryString);
     }
 
     /**

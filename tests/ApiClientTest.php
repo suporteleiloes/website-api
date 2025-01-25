@@ -155,4 +155,34 @@ class ApiClientTest extends TestCase
         $this->assertArrayHasKey('total', $banners);
     }
 
+    public function testListPages()
+    {
+        $contents = $this->client()->listContents([
+            'sortBy' => 'order',
+            'descending' => false
+        ]);
+        $this->assertIsArray($contents);
+        $this->assertArrayHasKey('result', $contents);
+        $this->assertArrayHasKey('total', $contents);
+    }
+
+    public function testLoadContent()
+    {
+        $content = $this->client()->loadContent(1);
+        $this->assertIsArray($content);
+        $this->assertArrayHasKey('id', $content);
+        $this->assertEquals($content['id'], 1);
+    }
+
+    public function testListMenus()
+    {
+        $contents = $this->client()->listMenus([
+            'sortBy' => 'order',
+            'descending' => false
+        ]);
+        $this->assertIsArray($contents);
+        $this->assertArrayHasKey('result', $contents);
+        $this->assertArrayHasKey('total', $contents);
+    }
+
 }
