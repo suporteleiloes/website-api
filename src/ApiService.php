@@ -9,14 +9,16 @@ class ApiService
     private $apiUrl;
     private $apiClient;
     private $apiKey;
+    private $userToken;
 
     use HttpTrait;
 
-    public function __construct($apiUrl = null, $apiClient = null, $apiKey = null)
+    public function __construct($apiUrl = null, $apiClient = null, $apiKey = null, $userToken = null)
     {
         $this->apiUrl = $apiUrl;
         $this->apiClient = $apiClient;
         $this->apiKey = $apiKey;
+        $this->userToken = $userToken;
     }
 
     private function parseParams($options, $page, $limit) {
@@ -101,7 +103,7 @@ class ApiService
     }
 
     public function userCredentials() {
-        return $this->callAuthApi('get', '/api/userCredentials');
+        return $this->callApi('get', '/api/userCredentials');
     }
 
     public function definirLoteFavorito($id) {}

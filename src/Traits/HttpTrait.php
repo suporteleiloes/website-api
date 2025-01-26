@@ -11,7 +11,7 @@ trait HttpTrait
     protected $client;
     protected $params;
 
-    function getClient($token = null)
+    function getClient($token = false)
     {
         $headers = [
             'uloc-mi' => $this->apiClient,
@@ -19,9 +19,9 @@ trait HttpTrait
             'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
             'X_FORWARDED_FOR' => Utils::get_client_ip_env(),
         ];
-        if (!empty($token)) {
+        if ($token) {
             unset($headers['X-AUTH-TOKEN']);
-            $headers['Authorization'] = 'Bearer ' . $token;
+            $headers['Authorization'] = 'Bearer ' . $this->userToken;
         }
         $params = [
             'timeout' => 100,
