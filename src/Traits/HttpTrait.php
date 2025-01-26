@@ -11,6 +11,10 @@ trait HttpTrait
     protected $client;
     protected $params;
 
+    public function getUserToken () {
+        return $_COOKIE['USER_SESSION'];
+    }
+
     function getClient($token = false)
     {
         $headers = [
@@ -21,7 +25,7 @@ trait HttpTrait
         ];
         if ($token) {
             unset($headers['X-AUTH-TOKEN']);
-            $headers['Authorization'] = 'Bearer ' . $this->userToken;
+            $headers['Authorization'] = 'Bearer ' . $this->getUserToken();
         }
         $params = [
             'timeout' => 100,

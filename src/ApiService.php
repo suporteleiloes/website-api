@@ -9,16 +9,14 @@ class ApiService
     private $apiUrl;
     private $apiClient;
     private $apiKey;
-    private $userToken;
 
     use HttpTrait;
 
-    public function __construct($apiUrl = null, $apiClient = null, $apiKey = null, $userToken = null)
+    public function __construct($apiUrl = null, $apiClient = null, $apiKey = null)
     {
         $this->apiUrl = $apiUrl;
         $this->apiClient = $apiClient;
         $this->apiKey = $apiKey;
-        $this->userToken = $userToken;
     }
 
     private function parseParams($options, $page, $limit) {
