@@ -12,7 +12,7 @@ trait HttpTrait
     protected $params;
 
     public function getUserToken () {
-        return $_COOKIE['USER_SESSION'];
+        return $_COOKIE['USER_SESSION'] ?? null;
     }
 
     function getClient($token = false)
@@ -23,7 +23,7 @@ trait HttpTrait
             'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
             'X_FORWARDED_FOR' => Utils::get_client_ip_env(),
         ];
-        if ($token) {
+        if ($token && $this->getUserToken()) {
             unset($headers['X-AUTH-TOKEN']);
             $headers['Authorization'] = 'Bearer ' . $this->getUserToken();
         }
