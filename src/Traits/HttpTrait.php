@@ -40,7 +40,7 @@ trait HttpTrait
 
     public function callAuthApi($method, $endpoint, $data = [], $userAuth = false)
     {
-        $this->callApi($method, $endpoint, $data = [], true);
+        return $this->callApi($method, $endpoint, $data = [], true);
     }
 
     public function callApi($method, $endpoint, $data = [], $userAuth = false)
