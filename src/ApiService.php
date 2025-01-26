@@ -101,7 +101,7 @@ class ApiService
     }
 
     public function userCredentials() {
-        return $this->callApi('get', '/api/userCredentials');
+        return $this->callAuthApi('get', '/api/userCredentials');
     }
 
     public function definirLoteFavorito($id) {}
