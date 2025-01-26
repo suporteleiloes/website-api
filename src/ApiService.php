@@ -79,12 +79,30 @@ class ApiService
         return $this->callApi('get', '/api/public/menus?' . $queryString);
     }
 
+    public function login($username, $password, $headers = []) {
+        return $this->callApi('post', '/api/auth', [
+            'json' => [
+                'user' => $username,
+                'pass' => $password,
+            ],
+            'headers' => $headers
+        ]);
+    }
+
     /**
      * Métodos do usuário logado
      */
-    public function login($username, $password) {}
-    public function logout() {}
-    public function recuperarSenha($userNameOrEmail) {}
+    public function recuperarSenha($userNameOrEmail) {
+        return $this->callApi('post', '/api/public/arrematantes/service/recupera-senha', [
+            'json' => [
+               'login' => $userNameOrEmail
+            ]
+        ]);
+    }
+
+    public function userCredentials() {
+        return $this->callApi('get', '/api/userCredentials');
+    }
 
     public function definirLoteFavorito($id) {}
     public function definirLeilaoFavorito($id) {}

@@ -185,4 +185,15 @@ class ApiClientTest extends TestCase
         $this->assertArrayHasKey('total', $contents);
     }
 
+    public function testRecuperarSenha()
+    {
+        $username = 'tiagofelipe';
+        $password = '2023#$';
+        $userData = $this->client()->login($username, $password, ['uloc-mi' => 'localhost']);
+        $this->assertArrayHasKey('token', $userData);
+        $token = $userData['token'];
+        $recuperarSenha = $this->client()->recuperarSenha($username);
+        var_dump($recuperarSenha);
+    }
+
 }
