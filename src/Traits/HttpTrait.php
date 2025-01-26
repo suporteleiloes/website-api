@@ -38,6 +38,11 @@ trait HttpTrait
         return $this->client;
     }
 
+    public function callAuthApi($method, $endpoint, $data = [], $userAuth = false)
+    {
+        $this->callApi($method, $endpoint, $data = [], true);
+    }
+
     public function callApi($method, $endpoint, $data = [], $userAuth = false)
     {
         try {
