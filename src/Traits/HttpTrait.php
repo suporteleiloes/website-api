@@ -63,7 +63,7 @@ trait HttpTrait
     {
         $body = json_decode($e->getResponse()->getBody(), true);
         if (isset($body['detail'])) {
-            throw new \Exception('[api]' . is_array($body['detail']) ? serialize($body['detail']) : $body['detail'], $e->getResponse()->getStatusCode());
+            throw new \Exception('[api]' . (is_array($body['detail']) ? serialize($body['detail']) : $body['detail']), $e->getResponse()->getStatusCode());
         }
         if (isset($body['error'])) {
             throw new \Exception('[api]' . (is_array($body['message']) ? (string)join($body['message'], ', ') : $body['message']), $e->getResponse()->getStatusCode());
