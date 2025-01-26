@@ -63,15 +63,15 @@ trait HttpTrait
     {
         $body = json_decode($e->getResponse()->getBody(), true);
         if (isset($body['detail'])) {
-            throw new \Exception('[api]' . is_array($body['detail']) ? serialize($body['detail']) : $body['detail'], $e->getRespose()->getCode());
+            throw new \Exception('[api]' . is_array($body['detail']) ? serialize($body['detail']) : $body['detail'], $e->getResponse()->getCode());
         }
         if (isset($body['error'])) {
-            throw new \Exception('[api]' . (is_array($body['message']) ? (string)join($body['message'], ', ') : $body['message']), $e->getRespose()->getCode());
+            throw new \Exception('[api]' . (is_array($body['message']) ? (string)join($body['message'], ', ') : $body['message']), $e->getResponse()->getCode());
         }
         try {
-            throw new \Exception('[api]' . $body, $e->getRespose()->getCode());
+            throw new \Exception('[api]' . $body, $e->getResponse()->getCode());
         } catch (\Throwable $exception) {
-            throw new \Exception('[api]' . $e->getResponse()->getBody(), $e->getRespose()->getCode());
+            throw new \Exception('[api]' . $e->getResponse()->getBody(), $e->getResponse()->getCode());
         }
     }
 }
