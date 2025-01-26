@@ -12,6 +12,8 @@
         "guzzlehttp/guzzle": "^7.9"
     },
     "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Suporteleiloes\\WebsiteApi\\": "src/"

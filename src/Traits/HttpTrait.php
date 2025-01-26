@@ -9,24 +9,37 @@ use Suporteleiloes\WebsiteApi\Utils\Utils;
 trait HttpTrait
 {
     protected $client;
+    protected $params;
 
     function getClient($token = null)
     {
-        if (!isset($this->client)) {
-            $params = [
-                'timeout' => 100,
-                'base_uri' => $this->apiUrl,
-                'headers' => [
-                    'uloc-mi' => $this->apiClient,
-                    'X-AUTH-TOKEN' => $this->apiKey,
-                    'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
-                    'X_FORWARDED_FOR' => Utils::get_client_ip_env(),
-                ],
-                'verify' => false
-            ];
-            $this->client = new Client($params);
+        $headers = [
+            'uloc-mi' => $this->apiClient,
+            'X-AUTH-TOKEN' => $this->apiKey,
+            'User-Agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+            'X_FORWARDED_FOR' => Utils::get_client_ip_env(),
+        ];
+        if (!empty($token)) {
+            unset($headers['X-AUTH-TOKEN']);
+            $headers['Authorization'] = 'Bearer ' . $token;
         }
+        $params = [
+            'timeout' => 100,
+            'base_uri' => $this->apiUrl,
+            'headers' => $headers,
+            'verify' => false
+        ];
+
+        if (!isset($this->client) || $params !== $this->params) {
+            $this->client = new Client($params);
+            $this->params = $params;
+        }
+
         return $this->client;
+    }
+    public function callAuthApi($method, $endpoint, $data = [])
+    {
+        return $this->callApi($method, $endpoint, $data = [], true);
     }
 
     public function callApi($method, $endpoint, $data = [], $userAuth = false)
