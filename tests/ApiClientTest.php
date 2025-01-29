@@ -7,11 +7,20 @@ class ApiClientTest extends TestCase
 {
 
     static $apiService;
+    static $username = null;
+    static $password = null;
+    static $tokenLogged = null;
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
+        // Carrega o .env.test
+        $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__, '.env.test');
+        $dotenv->load();
+        self::$username = $_ENV['TEST_USER_USERNAME'];
+        self::$password = $_ENV['TEST_USER_PASSWORD'];
+
         if (empty(self::$apiService)) {
-            self::$apiService = new ApiService('https://localhost:8000', 'localhost', '7d5cfc69a4523206b2dcc781383b96c5d');
+            self::$apiService = new ApiService($_ENV['API_BASE_URL'], $_ENV['API_CLIENT'], $_ENV['API_KEY']);
         }
         parent::__construct($name, $data, $dataName);
     }
@@ -26,7 +35,7 @@ class ApiClientTest extends TestCase
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Falha na autenticação');
 
-        $apiFake = new ApiService('https://localhost:8000', 'localhost', 'InvalidToken:P');
+        $apiFake = new ApiService($_ENV['API_BASE_URL'], $_ENV['API_CLIENT'], 'InvalidToken:P');
         $apiFake->loadLote(1);
     }
 
@@ -187,13 +196,17 @@ class ApiClientTest extends TestCase
 
     public function testRecuperarSenha()
     {
-        $username = 'tiagofelipe';
-        $password = '2023#$';
-        $userData = $this->client()->login($username, $password, ['uloc-mi' => 'localhost']);
+        $recuperarSenha = $this->client()->recuperarSenha(self::$username);
+        $this->assertIsArray($recuperarSenha);
+        $this->assertArrayHasKey('status', $recuperarSenha);
+        $this->assertEquals('OK', $recuperarSenha['status']);
+    }
+
+    public function testLogin()
+    {
+        $userData = $this->client()->login(self::$username, self::$password, ['uloc-mi' => $_ENV['API_CLIENT']]);
         $this->assertArrayHasKey('token', $userData);
         $token = $userData['token'];
-        $recuperarSenha = $this->client()->recuperarSenha($username);
-        var_dump($recuperarSenha);
     }
 
 }
