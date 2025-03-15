@@ -96,6 +96,11 @@ class ApiService
         return $this->callApi('get', '/api/public/menus?' . $queryString);
     }
 
+    public function getCacheVendedores()
+    {
+        return $this->callApi('get', '/api/public/cache/vendedores');
+    }
+
     public function login($username, $password, $headers = [])
     {
         return $this->callApi('post', '/api/auth', [
