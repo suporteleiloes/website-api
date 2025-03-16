@@ -101,6 +101,15 @@ class ApiService
         return $this->callApi('get', '/api/public/cache/vendedores');
     }
 
+    public function getComitente($id, $incluirEventos = true, $incluirDestaques = true)
+    {
+        $queryString = $this->parseParams([
+            'incluirEventos' => $incluirEventos,
+            'incluirDestaques' => $incluirDestaques,
+        ], 1, 10000);
+        return $this->callApi('get', '/api/public/comitentes/' . $id . '?' . $queryString);
+    }
+
     public function login($username, $password, $headers = [])
     {
         return $this->callApi('post', '/api/auth', [
