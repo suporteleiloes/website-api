@@ -207,4 +207,11 @@ class ApiService
     public function registrarContato($assunto, $mensagem, $tipoId = null, $personId = null, $email = null, $telefone = null, $extra = [])
     {
     }
+
+    public function getFiltros(array $query = [])
+    {
+        return $this->callApi('get', '/api/public/leiloes/filtros', [
+            'query' => $query
+        ]);
+    }
 }
