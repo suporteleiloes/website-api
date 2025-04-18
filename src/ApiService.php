@@ -59,12 +59,13 @@ class ApiService
         return $this->callApi('get', '/api/public/lotes/' . $id);
     }
 
-    public function assistenteBuscadorLote($criterio, $valor, $leilao = null)
+    public function assistenteBuscadorLote($options, $leilao = null)
     {
-        $options = [
+        /*$options = [
             'criterio' => $criterio,
             'valor' => $valor,
-        ];
+        ];*/
+
         if (!empty($leilao)) {
             $options['leilao'] = $leilao;
         }
