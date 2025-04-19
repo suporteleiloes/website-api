@@ -179,7 +179,7 @@ class ApiService
 
     public function definirLoteFavorito($id)
     {
-        return $this->callAuthApi('get', sprintf('/api/arrematantes/lotes/%s/favorito', $id));
+        return $this->callAuthApi('post', sprintf('/api/arrematantes/lotes/%s/favorito', $id));
     }
 
     public function removerLoteFavorito($id)
@@ -189,7 +189,7 @@ class ApiService
 
     public function definirLeilaoFavorito($id)
     {
-        return $this->callAuthApi('get', sprintf('/api/arrematantes/leiloes/%s/favorito', $id));
+        return $this->callAuthApi('post', sprintf('/api/arrematantes/leiloes/%s/favorito', $id));
     }
 
     public function getLeiloesFavoritos()
@@ -204,7 +204,7 @@ class ApiService
 
     public function definirBemFavorito($id)
     {
-        return $this->callAuthApi('get', sprintf('/api/arrematantes/bens/%s/favorito', $id));
+        return $this->callAuthApi('post', sprintf('/api/arrematantes/bens/%s/favorito', $id));
     }
 
     public function removerBemFavorito($id)
