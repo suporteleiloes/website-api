@@ -217,9 +217,11 @@ class ApiService
         return $this->callAuthApi('get', sprintf('/api/public/arrematantes/service/leiloes/%s/habilitar', $leilao));
     }
 
-    public function habilitarLeilao($leilao, $lote = null)
+    public function habilitarLeilao($leilao, $lote = null, $data = [])
     {
-        return $this->callAuthApi('get', sprintf('/api/public/arrematantes/service/leiloes/%s/habilitar?lote=%s', $leilao, $lote));
+        return $this->callAuthApi('post', sprintf('/api/public/arrematantes/service/leiloes/%s/habilitar?lote=%s', $leilao, $lote), [
+            'json' => $data
+        ]);
     }
 
     public function lance($loteId, $valor, $parcelado = false, $parcelas = null, $entrada = null)
