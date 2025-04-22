@@ -163,7 +163,7 @@ class ApiService
      */
     public function recuperarSenhaConfirmar($id, $token, $password)
     {
-        return $this->callApi('post', '/api/public/arrematantes/service/recupera-senha', [
+        return $this->callApi('put', '/api/public/arrematantes/service/recupera-senha', [
             'json' =>  [
                 'id' => $id,
                 'token' => $token,
