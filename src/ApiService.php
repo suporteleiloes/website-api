@@ -158,6 +158,20 @@ class ApiService
         ]);
     }
 
+    /**
+     * Métodos do usuário logado
+     */
+    public function recuperarSenhaConfirmar($id, $token, $password)
+    {
+        return $this->callApi('post', '/api/public/arrematantes/service/recupera-senha', [
+            'json' =>  [
+                'id' => $id,
+                'token' => $token,
+                'password' => $password
+            ]
+        ]);
+    }
+
     public function userCredentials()
     {
         return $this->callAuthApi('get', '/api/userCredentials');
