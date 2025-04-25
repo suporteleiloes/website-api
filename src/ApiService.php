@@ -246,6 +246,13 @@ class ApiService
     {
     }
 
+    public function enviarProposta($bem, $proposta)
+    {
+        return $this->callAuthApi('POST', '/api/public/arrematantes/service/bem/' . $bem . '/enviar-proposta', [
+            'json' => $proposta
+        ]);
+    }
+
     public function getFiltros(array $query = [])
     {
         return $this->callApi('get', '/api/public/leiloes/filtros', [
