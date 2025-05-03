@@ -259,4 +259,11 @@ class ApiService
             'query' => $query
         ]);
     }
+
+    public function mapa(array $query = [])
+    {
+        return $this->callApi('get', '/api/public/services/stockMap', [
+            'query' => $query
+        ]);
+    }
 }
