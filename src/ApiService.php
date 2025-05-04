@@ -266,4 +266,11 @@ class ApiService
             'query' => $query
         ]);
     }
+
+    public function newsletterCreate(array $data = [])
+    {
+        return $this->callApi('post', '/api/public/newsletter', [
+            'json' => $data
+        ]);
+    }
 }
