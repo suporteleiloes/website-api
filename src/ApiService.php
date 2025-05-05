@@ -273,4 +273,18 @@ class ApiService
             'json' => $data
         ]);
     }
+
+    public function getSetoresAtendimento(array $data = [])
+    {
+        return $this->callApi('get', '/api/public/atendimento/setores', [
+            'query' => $data
+        ]);
+    }
+
+    public function criarAtendimento(array $data = [])
+    {
+        return $this->callApi('post', '/api/public/atendimento', [
+            'json' => $data
+        ]);
+    }
 }
