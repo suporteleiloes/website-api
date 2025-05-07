@@ -287,4 +287,11 @@ class ApiService
             'json' => $data
         ]);
     }
+
+    public function getComitentes(array $data = [])
+    {
+        return $this->callApi('get', '/api/public/comitentes', [
+            'query' => $data
+        ]);
+    }
 }
