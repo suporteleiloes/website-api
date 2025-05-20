@@ -104,6 +104,11 @@ class ApiService
         return $this->callApi('get', '/api/public/contents/' . $id);
     }
 
+    public function loadContentByName($pageName)
+    {
+        return $this->callApi('get', '/api/public/contents/pageName/' . $pageName);
+    }
+
     public function listPosts($options = [], $page = 1, $limit = 100)
     {
         $queryString = $this->parseParams($options, $page, $limit);
