@@ -304,4 +304,9 @@ class ApiService
             'query' => $data
         ]);
     }
+
+    public function consultaNotaArrematacao($numero)
+    {
+        return $this->callApi('GET', '/api/public/services/consultaNota/' . $numero);
+    }
 }
