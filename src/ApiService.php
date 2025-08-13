@@ -270,6 +270,13 @@ class ApiService
         ]);
     }
 
+    public function getFiltrosBens(array $query = [])
+    {
+        return $this->callApi('get', '/api/public/estoque/filtros', [
+            'query' => $query
+        ]);
+    }
+
     public function mapa(array $query = [])
     {
         return $this->callApi('get', '/api/public/services/stockMap', [
